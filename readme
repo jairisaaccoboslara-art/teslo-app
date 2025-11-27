@@ -1,0 +1,5 @@
+ya el proyecto lo tengo en git
+ASI QUE CADA VES QUE EDITE ALGO DE PROYECTO TENGO QUE HACER ESTO EN LA TERMINAL DE VUE OSEA ACA
+git add .
+git commit -m "descripcion del cambio"
+git push
