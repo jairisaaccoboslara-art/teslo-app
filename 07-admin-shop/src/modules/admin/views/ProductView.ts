@@ -79,7 +79,7 @@ export default defineComponent({
         ...values,
         images: [...values.images, ...imageFiles.value],
       };
-      console.log("FORM DATA ENVIADA:", formValues);
+      
       mutate(formValues);
     });
 
