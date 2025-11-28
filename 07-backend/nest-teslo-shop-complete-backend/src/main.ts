@@ -12,7 +12,7 @@ async function bootstrap() {
 
   app.enableCors({
     origin: ['https://teslo-app-pro.onrender.com'], 
-    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
+    methods: 'process.env.FRONTEND_URL',
     credentials: true,
   });
 
