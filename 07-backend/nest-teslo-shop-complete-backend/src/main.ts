@@ -11,10 +11,14 @@ async function bootstrap() {
   app.setGlobalPrefix('api');
 
   app.enableCors({
-    origin: ['https://teslo-app-pro.onrender.com'], 
-    methods: 'process.env.FRONTEND_URL',
-    credentials: true,
-  });
+  origin: [
+    'https://teslo-app-pro.onrender.com',
+    'http://localhost:5173',
+    'http://localhost:3000',
+  ],
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
+  credentials: true,
+});
 
   app.useGlobalPipes(
     new ValidationPipe({
