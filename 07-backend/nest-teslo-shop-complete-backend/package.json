@@ -6,11 +6,11 @@
   "private": true,
   "license": "UNLICENSED",
   "engines": {
-    "node": "17.x"
+    "node": "18.x"
   },
   "scripts": {
     "prebuild": "rimraf dist",
-    "build": "nest build",
+    "build": "npm install && nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "node dist/main",
     "start:dev": "nest start --watch",
