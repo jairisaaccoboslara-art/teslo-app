@@ -111,10 +111,8 @@
 
     <button
       @click="AuthStore.logout()"
-      class="bg-blue-700 py-1.5 px-6 text-center text-sm font-medium text-white rounded-lg"
-    >
-      Cerrar sesión
-    </button>
+      type="button" class=" mr-3 hidden bg-blue-700 py-1.5 px-6 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 md:mr-0 md:inline-block rounded-lg">Cerrar sesión </button>
+   
   </template>
 
 </li>
