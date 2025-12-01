@@ -91,8 +91,7 @@
   <template v-if="!AuthStore.isAuthenticated">
     <RouterLink 
      to ="/auth/Login" type="button" class=" mr-3  border border-blue-700 py-1.5 px-6 text-center text-sm font-medium text-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-300  rounded-lg">Iniciar sesion
-    >
-      Iniciar sesión
+   
     </RouterLink>
 
     <RouterLink 
