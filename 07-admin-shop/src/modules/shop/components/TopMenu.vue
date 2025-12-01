@@ -85,40 +85,44 @@
     </RouterLink>
   </li>
   <!-- BOTONES MÓVIL -->
-<li class="md:hidden border-t pt-3 mt-3">
+<!-- BOTONES MÓVIL (idénticos a escritorio) -->
+<li class="md:hidden border-t pt-3 mt-3 flex flex-col gap-3">
+
   <template v-if="!AuthStore.isAuthenticated">
-    <RouterLink
+    <RouterLink 
       to="/auth/Login"
-      class="block w-full mb-2 rounded-lg border border-blue-700 py-2 text-blue-700 text-center"
+      class="border border-blue-700 py-1.5 px-6 text-center text-sm font-medium text-blue-700 rounded-lg"
     >
       Iniciar sesión
     </RouterLink>
 
-    <RouterLink
+    <RouterLink 
       to="/auth/Register"
-      class="block w-full mb-2 rounded-lg bg-blue-700 py-2 text-white text-center"
+      class="bg-blue-700 py-1.5 px-6 text-center text-sm font-medium text-white rounded-lg"
     >
-      Crear cuenta
+      Crear Cuenta
     </RouterLink>
   </template>
 
   <template v-else>
-    <RouterLink
+    <RouterLink 
       v-if="AuthStore.isAdmin"
       to="/admin"
-      class="block w-full mb-2 rounded-lg border border-blue-700 py-2 text-blue-700 text-center"
+      class="border border-blue-700 py-1.5 px-6 text-center text-sm font-medium text-blue-700 rounded-lg"
     >
       Admin
     </RouterLink>
 
     <button
       @click="AuthStore.logout()"
-      class="block w-full mb-2 rounded-lg bg-blue-700 py-2 text-white text-center"
+      class="bg-blue-700 py-1.5 px-6 text-center text-sm font-medium text-white rounded-lg"
     >
       Cerrar sesión
     </button>
   </template>
+
 </li>
+
 
 
 </ul>
