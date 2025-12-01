@@ -89,22 +89,32 @@
 <li class="md:hidden border-t pt-3 mt-3 flex flex-col gap-3">
 
   <template v-if="!AuthStore.isAuthenticated">
-        <RouterLink 
-      to ="/auth/Login" type="button" class=" mr-3 hidden border border-blue-700 py-1.5 px-6 text-center text-sm font-medium text-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-300 md:inline-block rounded-lg">Iniciar sesion </RouterLink> 
+    <RouterLink 
+     to ="/auth/Login" type="button" class=" mr-3 hidden border border-blue-700 py-1.5 px-6 text-center text-sm font-medium text-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-300 md:inline-block rounded-lg">Iniciar sesion
+    >
+      Iniciar sesión
+    </RouterLink>
 
     <RouterLink 
-      to="/auth/Register" type="button" class=" mr-3 hidden bg-blue-700 py-1.5 px-6 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 md:mr-0 md:inline-block rounded-lg">Crear Cuenta </RouterLink>
+      to="/auth/Register" type="button" class=" mr-3 hidden bg-blue-700 py-1.5 px-6 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 md:mr-0 md:inline-block rounded-lg">Crear Cuenta 
+    </RouterLink>
   </template>
 
   <template v-else>
     <RouterLink 
       v-if="AuthStore.isAdmin"
-      to ="/admin" type="button" class=" mr-3 hidden border border-blue-700 py-1.5 px-6 text-center text-sm font-medium text-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-300 md:inline-block rounded-lg">Admin </RouterLink> 
+      to="/admin"
+      class="border border-blue-700 py-1.5 px-6 text-center text-sm font-medium text-blue-700 rounded-lg"
+    >
+      Admin
+    </RouterLink>
 
-  
-      <button
+    <button
       @click="AuthStore.logout()"
-      type="button" class=" mr-3 hidden bg-blue-700 py-1.5 px-6 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 md:mr-0 md:inline-block rounded-lg">Cerrar sesión </button>
+      class="bg-blue-700 py-1.5 px-6 text-center text-sm font-medium text-white rounded-lg"
+    >
+      Cerrar sesión
+    </button>
   </template>
 
 </li>
