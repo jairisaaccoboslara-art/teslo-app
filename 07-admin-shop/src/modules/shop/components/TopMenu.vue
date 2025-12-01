@@ -47,13 +47,19 @@
     </button>
 
       <!-- Register Button -->
-      <button data-collapse-toggle="navbar-sticky" type="button" class="inline-flex items-center rounded-lg p-2 text-sm text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 md:hidden" aria-controls="navbar-sticky" aria-expanded="false">
+      <button @click="toggleMenu" type="button" class="inline-flex items-center rounded-lg p-2 text-sm text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 md:hidden" aria-controls="navbar-sticky" aria-expanded="false">
         <span class="sr-only">Abrir menu principal</span>
         <svg class="h-6 w-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path></svg>
       </button>
     </div>
-    <div class="hidden w-full items-center justify-between md:order-1 md:flex md:w-auto" id="navbar-sticky">
-      <ul class="mt-4 flex flex-col rounded-lg border border-gray-100 bg-gray-50 p-4 md:mt-0 md:flex-row md:space-x-8 md:border-0 md:bg-white md:text-sm md:font-medium">
+    <div
+  :class="[
+    'w-full items-center justify-between md:order-1 md:flex md:w-auto',
+    isOpen ? 'block' : 'hidden'
+  ]"
+  id="navbar-sticky"
+>
+<ul class="mt-4 flex flex-col rounded-lg border border-gray-100 bg-gray-50 p-4 md:mt-0 md:flex-row md:space-x-8 md:border-0 md:bg-white md:text-sm md:font-medium">
 
   <li>
     <RouterLink
@@ -78,6 +84,42 @@
       ¿Quines somos?
     </RouterLink>
   </li>
+  <!-- BOTONES MÓVIL -->
+<li class="md:hidden border-t pt-3 mt-3">
+  <template v-if="!AuthStore.isAuthenticated">
+    <RouterLink
+      to="/auth/Login"
+      class="block w-full mb-2 rounded-lg border border-blue-700 py-2 text-blue-700 text-center"
+    >
+      Iniciar sesión
+    </RouterLink>
+
+    <RouterLink
+      to="/auth/Register"
+      class="block w-full mb-2 rounded-lg bg-blue-700 py-2 text-white text-center"
+    >
+      Crear cuenta
+    </RouterLink>
+  </template>
+
+  <template v-else>
+    <RouterLink
+      v-if="AuthStore.isAdmin"
+      to="/admin"
+      class="block w-full mb-2 rounded-lg border border-blue-700 py-2 text-blue-700 text-center"
+    >
+      Admin
+    </RouterLink>
+
+    <button
+      @click="AuthStore.logout()"
+      class="block w-full mb-2 rounded-lg bg-blue-700 py-2 text-white text-center"
+    >
+      Cerrar sesión
+    </button>
+  </template>
+</li>
+
 
 </ul>
     </div>
@@ -86,11 +128,17 @@
 
  </template>
 
- <script lang="ts" setup>
- import { useAuthStore } from '@/modules/auth/stores/auth.store';
+<script lang="ts" setup>
+import { ref } from 'vue';
+import { useAuthStore } from '@/modules/auth/stores/auth.store';
 
- const AuthStore = useAuthStore(); 
+const AuthStore = useAuthStore(); 
 
+// Estado del menú móvil
+const isOpen = ref(false);
 
-
+// Función para abrir/cerrar menú
+const toggleMenu = () => {
+  isOpen.value = !isOpen.value;
+};
 </script>
