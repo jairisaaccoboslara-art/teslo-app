@@ -41,9 +41,7 @@
   />
 </div>
     <!-- Forgot Password Link -->
-    <div class="mb-6 text-blue-500">
-      <a href="#" class="hover:underline">Olvidaste tu contraseña?</a>
-    </div>
+    
     <!-- Login Button -->
     <button
       type="submit"
