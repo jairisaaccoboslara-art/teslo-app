@@ -33,7 +33,18 @@
       @click="AuthStore.logout()"
       type="button" class=" mr-3 hidden bg-blue-700 py-1.5 px-6 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 md:mr-0 md:inline-block rounded-lg">Cerrar sesión </button>
       </template>
-     
+      <button 
+        data-collapse-toggle="navbar-sticky" 
+        type="button" 
+        class="inline-flex items-center rounded-lg p-2 text-sm text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 md:hidden"
+        aria-controls="navbar-sticky" 
+        aria-expanded="false"
+    >
+        <span class="sr-only">Abrir menu principal</span>
+        <svg class="h-6 w-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path>
+        </svg>
+    </button>
 
       <!-- Register Button -->
       <button @click="toggleMenu" type="button" class="inline-flex items-center rounded-lg p-2 text-sm text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 md:hidden" aria-controls="navbar-sticky" aria-expanded="false">
@@ -74,23 +85,18 @@
     </RouterLink>
   </li>
   <!-- BOTONES MÓVIL -->
-<li class="border-t pt-3 mt-3 flex flex-col gap-3 md:hidden">
+<!-- BOTONES MÓVIL (idénticos a escritorio) -->
+<li class="md:hidden border-t pt-3 mt-3 flex flex-col gap-3">
 
   <template v-if="!AuthStore.isAuthenticated">
     <RouterLink 
-      to="/auth/Login"
-      type="button"
-      class="mr-3 border border-blue-700 py-1.5 px-6 text-center text-sm font-medium text-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-300 rounded-lg"
+     to ="/auth/Login" type="button" class=" mr-3 hidden border border-blue-700 py-1.5 px-6 text-center text-sm font-medium text-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-300 md:inline-block rounded-lg">Iniciar sesion
     >
       Iniciar sesión
     </RouterLink>
 
     <RouterLink 
-      to="/auth/Register"
-      type="button"
-      class="mr-3 bg-blue-700 py-1.5 px-6 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 rounded-lg"
-    >
-      Crear Cuenta
+      to="/auth/Register" type="button" class=" mr-3 hidden bg-blue-700 py-1.5 px-6 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 md:mr-0 md:inline-block rounded-lg">Crear Cuenta 
     </RouterLink>
   </template>
 
@@ -105,14 +111,15 @@
 
     <button
       @click="AuthStore.logout()"
-      type="button"
-      class="mr-3 bg-blue-700 py-1.5 px-6 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 rounded-lg"
+      class="bg-blue-700 py-1.5 px-6 text-center text-sm font-medium text-white rounded-lg"
     >
       Cerrar sesión
     </button>
   </template>
 
 </li>
+
+
 
 </ul>
     </div>
