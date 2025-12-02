@@ -75,16 +75,24 @@
   </li>
   <!-- BOTONES MÓVIL -->
 <!-- BOTONES MÓVIL (idénticos a escritorio) -->
-<li class=" border-t pt-3 mt-3 flex flex-col gap-3">
+<!-- BOTONES SOLO EN MÓVIL -->
+<li class="border-t pt-3 mt-3 flex flex-col gap-3 md:hidden">
 
   <template v-if="!AuthStore.isAuthenticated">
     <RouterLink 
-     to ="/auth/Login" type="button" class=" mr-3  border border-blue-700 py-1.5 px-6 text-center text-sm font-medium text-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-300  rounded-lg">Iniciar sesion
-   
+      to="/auth/Login"
+      type="button"
+      class="mr-3 border border-blue-700 py-1.5 px-6 text-center text-sm font-medium text-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-300 rounded-lg"
+    >
+      Iniciar sesión
     </RouterLink>
 
     <RouterLink 
-      to="/auth/Register" type="button" class=" mr-3 bg-blue-700 py-1.5 px-6 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300   rounded-lg">Crear Cuenta 
+      to="/auth/Register"
+      type="button"
+      class="mr-3 bg-blue-700 py-1.5 px-6 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 rounded-lg"
+    >
+      Crear Cuenta
     </RouterLink>
   </template>
 
@@ -99,13 +107,14 @@
 
     <button
       @click="AuthStore.logout()"
-      type="button" class=" mr-3 bg-blue-700 py-1.5 px-6 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300   rounded-lg">Cerrar sesión </button>
-   
+      type="button"
+      class="mr-3 bg-blue-700 py-1.5 px-6 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 rounded-lg"
+    >
+      Cerrar sesión
+    </button>
   </template>
 
 </li>
-
-
 
 </ul>
     </div>
