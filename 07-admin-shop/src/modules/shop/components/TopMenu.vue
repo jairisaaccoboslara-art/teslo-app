@@ -73,8 +73,7 @@
       ¿Quines somos?
     </RouterLink>
   </li>
-</ul>
- <!-- BOTONES MÓVIL -->
+  <!-- BOTONES MÓVIL -->
 <li class="border-t pt-3 mt-3 flex flex-col gap-3 md:hidden">
 
   <template v-if="!AuthStore.isAuthenticated">
@@ -112,10 +111,10 @@
       Cerrar sesión
     </button>
   </template>
-  
 
 </li>
 
+</ul>
     </div>
   </div>
 </nav>
