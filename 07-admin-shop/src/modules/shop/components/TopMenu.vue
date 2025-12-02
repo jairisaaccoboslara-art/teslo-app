@@ -74,11 +74,7 @@
     </RouterLink>
   </li>
 </ul>
-
-
-    </div>
-  </div>
-   <!-- BOTONES MÓVIL -->
+ <!-- BOTONES MÓVIL -->
 <li class="border-t pt-3 mt-3 flex flex-col gap-3 md:hidden">
 
   <template v-if="!AuthStore.isAuthenticated">
@@ -116,13 +112,12 @@
       Cerrar sesión
     </button>
   </template>
-  <ul class="mt-4 flex flex-col rounded-lg border border-gray-100 bg-gray-50 p-4 md:mt-0 md:flex-row md:space-x-8 md:border-0 md:bg-white md:text-sm md:font-medium">
-
   
-</ul>
 
 </li>
 
+    </div>
+  </div>
 </nav>
 
  </template>
