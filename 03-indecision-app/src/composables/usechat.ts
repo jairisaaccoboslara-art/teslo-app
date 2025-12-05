@@ -1,7 +1,7 @@
 
 import { ref } from 'vue'
-import type { ChatMessage } from '@/interface/chat-message.interface'
-import { sleep } from '@/helpers/sleep'
+import type { ChatMessage } from '../interface/chat-message.interface'
+import { sleep } from '../helpers/sleep'
 
 export const useChat = () => {
   const messages = ref<ChatMessage[]>([])
