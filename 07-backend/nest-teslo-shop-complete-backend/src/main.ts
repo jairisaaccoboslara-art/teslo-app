@@ -14,7 +14,8 @@ async function bootstrap() {
   origin: [
     
     'http://localhost:3000',
-    'http://localhost:5173'
+    'http://localhost:5173',
+    'https://teslo-app-pro.onrender.com'
   ],
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
   credentials: true,
@@ -40,5 +41,5 @@ async function bootstrap() {
   logger.log(`App running on port ${ process.env.PORT }`);
 }
 bootstrap();
-//'https://teslo-app-pro.onrender.com',
+//
     //'http://localhost:5173',
