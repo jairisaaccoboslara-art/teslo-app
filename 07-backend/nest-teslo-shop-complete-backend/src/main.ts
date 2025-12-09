@@ -12,8 +12,7 @@ async function bootstrap() {
 
   app.enableCors({
   origin: [
-    'https://teslo-app-pro.onrender.com',
-    'http://localhost:5173',
+    
     'http://localhost:3000',
   ],
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
@@ -40,3 +39,5 @@ async function bootstrap() {
   logger.log(`App running on port ${ process.env.PORT }`);
 }
 bootstrap();
+//'https://teslo-app-pro.onrender.com',
+    //'http://localhost:5173',
