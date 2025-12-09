@@ -15,6 +15,9 @@ import { MessagesWsModule } from './messages-ws/messages-ws.module';
 @Module({
   imports: [
     ConfigModule.forRoot(),
+    
+    isGlobal: true,
+
 
     TypeOrmModule.forRoot({
       ssl: process.env.STAGE === 'prod',
