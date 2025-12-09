@@ -81,7 +81,7 @@
           ? 'text-white bg-blue-700 md:bg-transparent md:text-blue-700' 
           : 'text-gray-700 hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700'"
     >
-      ¿Quines somos?
+      ¿Quienes somos?
     </RouterLink>
   </li>
   <!-- BOTONES MÓVIL -->
