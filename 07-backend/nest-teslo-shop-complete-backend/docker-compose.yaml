@@ -1,3 +1,4 @@
+
 version: "3.9"
 
 services:
@@ -8,10 +9,10 @@ services:
     ports:
       - "5432:5432"
     environment:
-      POSTGRES_DB: TesloDB
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: MySecr3tPassword@as2
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USERNAME}
     volumes:
       - ./postgres:/var/lib/postgresql/data
-
-
+    env_file:
+      - .env.development
