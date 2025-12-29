@@ -1,4 +1,15 @@
-import { Controller, Get, Post, Body, UseGuards, Req, Headers } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  UseGuards,
+  Req,
+  Headers,
+  Patch,
+  Param,
+  Delete,
+} from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { ApiTags } from '@nestjs/swagger';
 import { IncomingHttpHeaders } from 'http';
@@ -12,9 +23,7 @@ import { User } from './entities/user.entity';
 import { UserRoleGuard } from './guards/user-role.guard';
 import { ValidRoles } from './interfaces';
 
-import { Patch, Param, Delete } from '@nestjs/common';
 import { UpdateUserDto } from './dto/update-user.dto';
-
 
 @ApiTags('Auth')
 @Controller('auth')
@@ -22,24 +31,43 @@ export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
   // -------------------
-  // Rutas existentes
+  // REGISTRO
   // -------------------
   @Post('register')
-  createUser(@Body() createUserDto: CreateUserDto ) {
+  createUser(@Body() createUserDto: CreateUserDto) {
     return this.authService.create(createUserDto);
   }
 
+  // -------------------
+  // LOGIN
+  // -------------------
   @Post('login')
-  loginUser(@Body() loginUserDto: LoginUserDto ) {
+  loginUser(@Body() loginUserDto: LoginUserDto) {
     return this.authService.login(loginUserDto);
   }
 
+  // -------------------
+  // CHECK STATUS
+  // -------------------
   @Get('check-status')
   @Auth()
   checkAuthStatus(@GetUser() user: User) {
     return this.authService.checkAuthStatus(user);
   }
 
+  // -------------------
+  // PERFIL DEL USUARIO LOGUEADO ✅ (AGREGADO)
+  // -------------------
+  @Get('profile')
+  @Auth()
+  getProfile(@GetUser() user: User) {
+    const { password, ...userWithoutPassword } = user;
+    return userWithoutPassword;
+  }
+
+  // -------------------
+  // RUTAS PRIVADAS (PRUEBA)
+  // -------------------
   @Get('private')
   @UseGuards(AuthGuard())
   testingPrivateRoute(
@@ -79,30 +107,32 @@ export class AuthController {
   }
 
   // -------------------
-  // NUEVA RUTA: Obtener todos los usuario
-
-@Get('users')
-  @Auth(ValidRoles.admin) // solo admins pueden ver todos los usuarios
+  // ADMIN: OBTENER TODOS LOS USUARIOS
+  // -------------------
+  @Get('users')
+  @Auth(ValidRoles.admin)
   async getAllUsers() {
     return this.authService.findAllUsers();
   }
-  // Actualizar usuario (nombre, email, password, roles)
-@Patch('users/:id')
-@Auth(ValidRoles.admin)
-updateUser(
-  @Param('id') id: string,
-  @Body() updateUserDto: UpdateUserDto,
-) {
-  return this.authService.updateUser(id, updateUserDto);
+
+  // -------------------
+  // ADMIN: ACTUALIZAR USUARIO
+  // -------------------
+  @Patch('users/:id')
+  @Auth(ValidRoles.admin)
+  updateUser(
+    @Param('id') id: string,
+    @Body() updateUserDto: UpdateUserDto,
+  ) {
+    return this.authService.updateUser(id, updateUserDto);
+  }
+
+  // -------------------
+  // ADMIN: ELIMINAR USUARIO
+  // -------------------
+  @Delete('users/:id')
+  @Auth(ValidRoles.admin)
+  deleteUser(@Param('id') id: string) {
+    return this.authService.deleteUser(id);
+  }
 }
-
-// Eliminar usuario
-@Delete('users/:id')
-@Auth(ValidRoles.admin)
-deleteUser(@Param('id') id: string) {
-  return this.authService.deleteUser(id);
-}
-}
-
-
-

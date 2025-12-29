@@ -11,6 +11,7 @@ const isNotAuthenticatedGuard = async (
   if (authStore.isChecking) {
     await authStore.checkAuthStatus();
   }
+
   if (authStore.isAuthenticated) {
     return next({ name: 'home' });
   }

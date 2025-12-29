@@ -4,4 +4,5 @@ export interface User {
     fullName: String;
     isActive: boolean;
     roles:    String[];
+    password?: string;
 }

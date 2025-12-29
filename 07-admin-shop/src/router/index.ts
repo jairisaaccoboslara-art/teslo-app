@@ -8,7 +8,6 @@ const router = createRouter({
   routes: [
     {
       path: '/',
-      name: 'shop',
       component: ShopLayout,
       children: [
         {
@@ -17,39 +16,45 @@ const router = createRouter({
           component: () => import('@/modules/shop/views/HomeView.vue'),
         },
         {
-      path: 'about',
-      name: 'about',
-      component: () => import('@/modules/shop/views/AboutView.vue'),
-    },
+          path: 'about',
+          name: 'about',
+          component: () => import('@/modules/shop/views/AboutView.vue'),
+        },
+        {
+          path: 'carousel',
+          name: 'carousel',
+          component: () => import('@/modules/shop/views/Carousel.vue'),
+        },
+        {
+          path: 'carrito',
+          name: 'carrito',
+          component: () => import('@/modules/shop/views/carrito.vue'),
+        },
+        {
+          path: '/products/:id',
+          name: 'product-detail',
+          component: () => import('@/modules/admin/views/ProductView.vue'),
+        },
+        {
+          path: '/admin/sales',
+          name: 'admin-sales',
+          component: () => import('@/modules/admin/views/AdminsalesView.vue'),
+        },
+        {
+          path: '/news',
+          name: 'noticias-tienda',
+          component: () => import('@/modules/shop/views/news.vue'),
+        },
+        {
+          path: '/perfil',
+          name: 'perfil-persona',
+          component: () => import('@/modules/shop/views/perfil.vue'),
+        },
       ],
     },
     authRoutes,
     adminRoutes,
   ],
 });
-import { useAuthStore } from '@/modules/auth/stores/auth.store';
-
-router.beforeEach(async (to, from, next) => {
-  const auth = useAuthStore();
-
-  if (auth.isChecking) {
-    const ok = await auth.checkAuthStatus();
-
-    if (!ok && to.meta.requiresAuth) {
-      return next('/auth/login');
-    }
-  }
-
-  if (to.meta.requiresAdmin && !auth.isAdmin) {
-    return next('/');
-  }
-
-  if (to.meta.requiresAuth && !auth.isAuthenticated) {
-    return next('/auth/login');
-  }
-
-  next();
-});
-
 
 export default router;

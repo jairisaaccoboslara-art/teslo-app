@@ -24,7 +24,7 @@ export const registerAction = async (
       password,
     });
 
-    console.log({ data });
+  
 
     return {
       ok: true,

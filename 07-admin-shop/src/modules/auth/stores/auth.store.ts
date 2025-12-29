@@ -58,7 +58,7 @@ const login = async (email: string, password: string) => {
     authStatus.value = AuthStatus.Unauthenticated;
     user.value = undefined;
     token.value = '';
-    console.log('Usuario cerrado')
+
     return false;
   };
 

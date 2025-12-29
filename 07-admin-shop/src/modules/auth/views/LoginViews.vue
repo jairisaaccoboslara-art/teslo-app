@@ -19,7 +19,7 @@
       <label for="password" class="block text-gray-600">Contraseña</label>
       <input
         v-model="myForm.password"
-        ref="passwordInputRe"
+        ref="passwordInputRef"
         type="password"
         id="password"
         name="password"
@@ -48,7 +48,7 @@
   </form>
   <!-- Sign up  Link -->
   <div class="mt-6 text-blue-500 text-center">
-    <RouterLink :to="{ name: 'register' }" class="hover:underline">Crear cuenta</RouterLink>
+    <RouterLink :to="{ name: 'register' }" class="hover:underline">¿No tienes una cuenta?<br>Crear cuenta</RouterLink>
   </div>
 </template>
 
@@ -59,8 +59,8 @@ import { useToast } from 'vue-toastification';
 
 
 const authStore = useAuthStore();
-const emailInputRef = ref<HTMLAnchorElement|null>(null)
-const passwordInputRef = ref<HTMLInputElement|null>(null)
+const emailInputRef = ref<HTMLInputElement | null>(null)
+const passwordInputRef = ref<HTMLInputElement | null>(null)
 const toast = useToast();
 
 const myForm = reactive ({

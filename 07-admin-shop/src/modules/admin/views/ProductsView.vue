@@ -1,10 +1,8 @@
 <template>
   <div class="bg-white px-5 py-2 rounded">
     <h1 class="text-3xl"> <b>Productos </b></h1>
-
-   
    <!-- component -->
-    <div class="py-8 w-full">
+    <div class="py-4 w-full">
       <div class="shadow overflow-hidden rounded border-b border-gray-200">
         <table class="min-w-full bg-white">
           <thead class="bg-gray-800 text-white">
@@ -24,7 +22,13 @@
               }"
             >
               <td class="text-left py-3 px-4">
-                <img :src="product.images[0]" :alt="product.title" class="h-10 w-10 object-cover" />
+                <img 
+                  v-if="product.images && product.images.length > 0"
+                  :src="getImageUrl(product.images[0])" 
+                  :alt="product.title" 
+                  class="h-10 w-10 object-cover" 
+                />
+                <div v-else class="h-10 w-10 bg-gray-300"></div>
               </td>
               <td class="text-left py-3 px-4">
                 <RouterLink
@@ -36,11 +40,16 @@
               </td>
               <td class="text-left py-3 px-4">
                 <span class="bg-blue-200 text-blue-600 py-1 px-3 rounded-full text-xs">
-                  {{ product.price }}
+                  ${{ product.price }}
                 </span>
               </td>
               <td class="text-left py-3 px-4">
-                {{ product.sizes.join(',') }}
+                {{ product.sizes ? product.sizes.join(', ') : 'N/A' }}
+              </td>
+            </tr>
+            <tr v-if="!products || products.length === 0">
+              <td colspan="4" class="text-center py-6 text-gray-500">
+                No hay productos disponibles
               </td>
             </tr>
           </tbody>
@@ -57,6 +66,7 @@ import { useQuery, useQueryClient } from '@tanstack/vue-query';
 import { getProductsAction } from '@/modules/products/actions';
 import ButtonPagination from '@/modules/common/components/ButtonPagination.vue';
 import { usePagination } from '@/modules/common/componsables/usePagination';
+import { getImageUrl } from '@/helpers/getImageUrl';
 
 const queryClient = useQueryClient();
 const { page } = usePagination();
@@ -77,5 +87,3 @@ watchEffect(() => {
 
 });
 </script>
-
-

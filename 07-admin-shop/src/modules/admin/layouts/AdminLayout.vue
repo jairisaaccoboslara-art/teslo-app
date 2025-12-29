@@ -38,39 +38,20 @@
     />
   </svg>
 </RouterLink>
-      <a
-        class="flex items-center justify-center flex-shrink-0 w-10 h-10 mt-4 mt-auto rounded hover:bg-gray-300"
-        href="#"
-      >
-        <svg
-          class="w-5 h-5"
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-          />
-        </svg>
-      </a>
 
-      
+
     </div>
     <div class="flex flex-col w-56 border-r border-gray-300">
       <button class="relative text-sm focus:outline-none group">
         <div
           class="flex items-center justify-between w-full h-16 px-4 border-b border-gray-300 hover:bg-gray-300"
         >
-          <RouterLink
-          class="flex items-center flex-shrink-0 h-10 px-2 text-sm font-medium rounded hover:bg-gray-300"
-          to="/admin"
-        >
-          <span class="leading-none">Menu principal</span>
-        </RouterLink>
+        <div class="flex items-center flex-shrink-0 h-16 px-8 border-b border-gray-300">
+        <h1 class="text-lg font-medium">{{ username }}</h1>
+       
+      
+      </div>
+          
           <svg
             class="w-4 h-4"
             xmlns="http://www.w3.org/2000/svg"
@@ -86,6 +67,12 @@
       </button>
      
       <div class="flex flex-col flex-grow p-4 overflow-auto">
+        <RouterLink
+          class="flex items-center flex-shrink-0 h-10 px-2 text-sm font-medium rounded hover:bg-gray-300"
+          to="/admin"
+        >
+          <span class="leading-none">Panel Administrativo</span>
+        </RouterLink>
         
         <RouterLink
           class="flex items-center flex-shrink-0 h-10 px-2 text-sm font-medium rounded hover:bg-gray-300"
@@ -94,9 +81,14 @@
           <span class="leading-none">Productos</span>
         </RouterLink>
        
-        
-         
-        <RouterLink
+      <RouterLink
+          class="flex items-center flex-shrink-0 h-10 px-2 text-sm font-medium rounded hover:bg-gray-300"
+          to="/admin/sales"
+        >
+          <span class="leading-none">Ventas</span>
+        </RouterLink>
+       
+       <RouterLink
           to="/admin/products/create"
           class="flex items-center flex-shrink-0 h-10 px-3 mt-auto text-sm font-medium bg-blue-500 rounded hover:bg-blue-700 text-white"
         >
@@ -116,14 +108,12 @@
           </svg>
           <span class="ml-2 leading-none">Nuevo</span>
         </RouterLink>
+    
       </div>
+      
     </div>
     <div class="flex flex-col flex-grow">
-      <div class="flex items-center flex-shrink-0 h-16 px-8 border-b border-gray-300">
-        <h1 class="text-lg font-medium">{{ username }}</h1>
-       
       
-      </div>
       <div class="flex-grow p-6 overflow-auto bg-gray-200">
         <RouterView />
       </div>

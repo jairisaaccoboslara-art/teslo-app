@@ -9,10 +9,13 @@ const isAuthenticatedGuard = async (
 ) => {
   const authStore = useAuthStore();
 
+  const isValid = await authStore.checkAuthStatus();
 
-  await authStore.checkAuthStatus();
+  if (!isValid || authStore.authStatus === AuthStatus.Unauthenticated) {
+    return next({ name: 'home' });
+  }
 
-  authStore.authStatus === AuthStatus.Unauthenticated ? next({ name: 'home' }) : next();
+  return next();
 };
 
 export default isAuthenticatedGuard;

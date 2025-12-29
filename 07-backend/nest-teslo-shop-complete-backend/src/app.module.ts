@@ -11,6 +11,16 @@ import { SeedModule } from './seed/seed.module';
 import { FilesModule } from './files/files.module';
 import { AuthModule } from './auth/auth.module';
 import { MessagesWsModule } from './messages-ws/messages-ws.module';
+import { SalesModule } from './sales/sales.module';
+
+/*
+console.log({
+  DB_HOST: process.env.DB_HOST,
+  DB_PORT: process.env.DB_PORT,
+  DB_USER: process.env.DB_USERNAME,
+  DB_PASS: process.env.DB_PASSWORD,
+  STAGE: process.env.STAGE,
+});*/
 
 @Module({
   imports: [
@@ -48,6 +58,7 @@ import { MessagesWsModule } from './messages-ws/messages-ws.module';
     FilesModule,
     AuthModule,
     MessagesWsModule,
+    SalesModule
   ],
 })
 export class AppModule {}

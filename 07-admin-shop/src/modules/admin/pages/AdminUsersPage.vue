@@ -18,7 +18,7 @@
         <p class="text-2xl font-bold">{{ users.length - adminsCount }}</p>
       </div>
     </div>
-
+        <b>
     <!-- BUSCADOR -->
     <div class="mb-6">
       <input
@@ -27,7 +27,8 @@
         placeholder="Buscar por nombre o email..."
         class="w-full p-2 border rounded"
       />
-    </div>
+    </div> </b>
+    
 
     <!-- GRID DE USUARIOS -->
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">

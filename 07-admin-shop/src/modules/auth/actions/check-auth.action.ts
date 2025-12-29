@@ -21,7 +21,7 @@ export const checkAuthAction = async (): Promise<CheckError | CheckSuccess> => {
 
     const { data } = await tesloApi.get<AuthResponse>('/auth/check-status', {
       headers: {
-        Authorization: `Bearer ${localToken}`,   // ✔️ ESTA ES LA PARTE CRÍTICA
+        Authorization: `Bearer ${localToken}`,
       },
     });
 

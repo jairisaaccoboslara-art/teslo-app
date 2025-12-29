@@ -1,68 +1,63 @@
 <template>
-<!-- Title -->
-<div class="pt-32  bg-white">
-<h1 class="text-center text-2xl font-bold text-gray-800">Productos Disponibles</h1>
-</div>
+  <!-- Título -->
+  <div class="pt-5 bg-white">
+    <h3 class="text-center text-2xl font-bold text-gray-800">Productos Disponibles</h3>
+  </div>
 
+  <!-- Mensaje de carga -->
+  <div v-if="isPending" class="text-center h-[500px]">
+    <h1 class="text-xl font-bold">Cargando productos</h1>
+    <p>Espere por favor...</p>
+  </div>
 
+  <!-- Lista de productos -->
+  <ProductList v-else :products="productsList" />
 
-<div v-if="!products" class="text-center h-[500px]">
-	<h1 class="text-xl">Cargando productos</h1>
-	<p>Espere por favor</p>
-</div>
-
-<ProductList v-else :products="products" />
-
-
-<ButtonPagination 
-:has-more-data="!!products && products.length < 10"
-:is-first-page="page === 1"
-:page="page"/>
-
-
-<!--<div>{{ products }}</div>-->
+  <!-- Paginación -->
+  <ButtonPagination 
+    :has-more-data="productsList.length > 0 && productsList.length < 10"
+    :is-first-page="page === 1"
+    :page="page"
+  />
 </template>
 
+<script setup lang="ts">
+import { ref, watch, computed } from "vue";
+import { useRoute } from "vue-router";
+import { useQuery, useQueryClient } from "@tanstack/vue-query";
 
-<script lang ="ts" setup>
 import ButtonPagination from '@/modules/common/components/ButtonPagination.vue';
-import { getProductsAction } from '@/modules/products/actions';
 import ProductList from '@/modules/products/components/productList.vue';
-import { useQuery, useQueryClient } from '@tanstack/vue-query';
-import { useRoute  } from 'vue-router';
-import { ref, watch, watchEffect } from 'vue';
- 
-const route = useRoute();
-const page = ref(Number(route.query.page || 1 ));
-const queryClient = useQueryClient ();
+import Carousel from '@/modules/shop/views/Carousel.vue';
+import { getProductsAction } from '@/modules/products/actions';
 
-const { data: products = [] } = useQuery({
-  queryKey: ['products', { page: page }],
+// 🔹 Ruta y paginación
+const route = useRoute();
+const page = ref(Number(route.query.page || 1));
+
+// 🔹 Query client
+const queryClient = useQueryClient();
+
+// 🔹 Query para obtener productos
+const { data: products, isPending } = useQuery({
+  queryKey: ['products', page],
   queryFn: () => getProductsAction(page.value),
 });
 
+// 🔹 Lista de productos computada
+const productsList = computed(() => products?.value ?? []);
 
+// 🔹 Detectar cambios de página en la URL
+watch(() => route.query.page, (newPage) => {
+  page.value = Number(newPage || 1);
+  window.scroll({ top: 0, behavior: 'smooth' });
+});
 
-
-watch(
-	() => route.query.page,
-	(newPage)  =>{
-		page.value = Number( newPage || 1)
-		window.scroll({ top: 0, behavior: 'smooth'});
-
-
-
-	},
-
-);
-
-
-watchEffect(() =>{
-	queryClient.prefetchQuery({
-		queryKey: ['products', { page: page.value + 1}],
-		queryFn: () => getProductsAction(page.value +1),
-	})
-
-}
-)
+// 🔹 Prefetch de la siguiente página
+watch(page, () => {
+  queryClient.prefetchQuery({
+    queryKey: ['products', page.value + 1],
+    queryFn: () => getProductsAction(page.value + 1),
+  });
+});
 </script>

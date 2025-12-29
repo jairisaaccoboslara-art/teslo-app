@@ -52,7 +52,7 @@
   </form>
   <!-- Sign up  Link -->
   <div class="mt-6 text-blue-500 text-center">
-    <RouterLink :to="{ name: 'login' }" class="hover:underline">Iniciar sesión </RouterLink>
+    <RouterLink :to="{ name: 'login' }" class="hover:underline">¿Ya tienes una cuenta?<br> Iniciar sesión</RouterLink>
   </div>
 </template>
 
