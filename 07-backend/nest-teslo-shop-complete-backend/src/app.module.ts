@@ -30,22 +30,27 @@ console.log({
     }),
 
     TypeOrmModule.forRoot({
-      ssl: process.env.STAGE === 'prod',
-      extra: {
-        ssl:
-          process.env.STAGE === 'prod'
-            ? { rejectUnauthorized: false }
-            : null,
-      },
-      type: 'postgres',
-      host: process.env.DB_HOST,
-      port: +process.env.DB_PORT,
-      database: process.env.DB_NAME,
-      username: process.env.DB_USERNAME,
-      password: process.env.DB_PASSWORD,
-      autoLoadEntities: true,
-      synchronize: true, 
-    }),
+  type: 'postgres',
+
+  // 👉 PRODUCCIÓN (Render)
+  ...(process.env.STAGE === 'prod'
+    ? {
+        url: process.env.DATABASE_URL,
+        ssl: { rejectUnauthorized: false },
+      }
+    : {
+        // 👉 DESARROLLO (Docker local)
+        host: process.env.DB_HOST,
+        port: +process.env.DB_PORT,
+        database: process.env.DB_NAME,
+        username: process.env.DB_USERNAME,
+        password: process.env.DB_PASSWORD,
+      }),
+
+  autoLoadEntities: true,
+  synchronize: true,
+}),
+
 
     ServeStaticModule.forRoot({
       rootPath: join(__dirname, '..', 'public'),

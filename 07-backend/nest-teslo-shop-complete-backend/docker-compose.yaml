@@ -5,9 +5,9 @@ services:
     image: postgres:16
     container_name: teslodb
     restart: always
-    
+
     ports:
-      - "5435:5432"   
+      - "5435:5432"
 
     environment:
       POSTGRES_PASSWORD: ${DB_PASSWORD}
@@ -19,7 +19,3 @@ services:
 
     env_file:
       - .env.development
-
-networks:
-  default:
-    driver: bridge
