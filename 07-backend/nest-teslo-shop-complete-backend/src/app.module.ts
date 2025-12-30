@@ -21,6 +21,7 @@ console.log({
   DB_PASS: process.env.DB_PASSWORD,
   STAGE: process.env.STAGE,
 });*/
+console.log('DATABASE_URL =>', process.env.DATABASE_URL);
 
 @Module({
   imports: [
